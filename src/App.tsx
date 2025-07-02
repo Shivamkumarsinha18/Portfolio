@@ -1,8 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import React from "react";
 import { motion } from "framer-motion";
 import { SiCplusplus, SiHtml5, SiCss3, SiJavascript, SiPython, SiReact, SiTypescript, SiTailwindcss, SiDocker, SiAndroid, SiFirebase, SiMongodb, SiGit, SiGithub, SiJupyter, SiIntellijidea, SiEclipseide } from "react-icons/si";
 import { FaMobileAlt, FaUsers, FaLightbulb, FaClock, FaSyncAlt, FaHandshake, FaCode, FaDatabase, FaTools, FaMapMarkerAlt, FaFingerprint, FaUserShield, FaSync, FaChartBar, FaFileExcel, FaAward, FaUsersCog, FaUserGraduate, FaComments, FaVideo, FaGift, FaBook, FaCalendarAlt, FaReact, FaAndroid, FaPhone, FaLinkedin, FaInstagram, FaGithub, FaUser, FaProjectDiagram, FaCertificate } from "react-icons/fa";
@@ -270,7 +266,7 @@ const Skills = () => (
         cat.category === "Soft Skills" ? (
           <motion.div
             key={cat.category}
-            className="rounded-xl bg-[#2d2d30] border border-gray-700 shadow-lg p-6 flex flex-row items-center gap-6 transition-transform duration-300"
+            className="rounded-xl bg-[#2d2d30] border border-gray-700 shadow-lg p-6 flex flex-col items-start transition-transform duration-300"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -278,12 +274,25 @@ const Skills = () => (
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 400, damping: 12 }}
           >
-            {cat.items.map(item => (
-              <div key={item.name} className="flex flex-col items-center">
-                <span className="text-4xl mb-2">{item.icon}</span>
-                <span className="text-gray-300 text-sm font-medium text-center">{item.name}</span>
+            <h3 className="text-2xl font-semibold text-gray-100 mb-4 text-left">{cat.category}</h3>
+            <div className="flex flex-col w-full gap-2">
+              <div className="flex flex-row gap-4 w-full">
+                {cat.items.slice(0, 3).map(item => (
+                  <div key={item.name} className="flex flex-col items-start">
+                    <span className="text-[1.9rem] mb-1">{item.icon}</span>
+                    <span className="text-gray-300 text-sm font-medium text-left">{item.name}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+              <div className="flex flex-row gap-4 w-full mt-2">
+                {cat.items.slice(3).map(item => (
+                  <div key={item.name} className="flex flex-col items-start">
+                    <span className="text-[1.9rem] mb-1">{item.icon}</span>
+                    <span className="text-gray-300 text-sm font-medium text-left">{item.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         ) : (
           <motion.div
