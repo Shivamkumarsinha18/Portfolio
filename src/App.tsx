@@ -1,6 +1,7 @@
 import './App.css'
 import { motion } from "framer-motion";
-import { SiCplusplus, SiHtml5, SiCss3, SiJavascript, SiPython, SiReact, SiTypescript, SiTailwindcss, SiDocker, SiAndroid, SiFirebase, SiMongodb, SiGit, SiGithub, SiJupyter, SiIntellijidea, SiEclipseide } from "react-icons/si";
+import React from "react";
+import { SiCplusplus, SiHtml5, SiCss3, SiJavascript, SiPython, SiReact, SiTypescript, SiTailwindcss, SiDocker, SiFirebase, SiMongodb, SiGit, SiGithub, SiJupyter, SiIntellijidea, SiEclipseide } from "react-icons/si";
 import { FaMobileAlt, FaUsers, FaLightbulb, FaClock, FaSyncAlt, FaHandshake, FaCode, FaDatabase, FaTools, FaMapMarkerAlt, FaFingerprint, FaUserShield, FaSync, FaChartBar, FaFileExcel, FaAward, FaUsersCog, FaUserGraduate, FaComments, FaVideo, FaGift, FaBook, FaCalendarAlt, FaReact, FaAndroid, FaPhone, FaLinkedin, FaInstagram, FaGithub, FaUser, FaProjectDiagram, FaCertificate } from "react-icons/fa";
 import profilePic from './assets/profile.jpg';
 
@@ -16,7 +17,7 @@ const CertificateGallery = () => (
   <section id="certificates" className="min-h-screen bg-[#252425] py-16 px-4 md:px-16">
     <h2 className="text-4xl font-bold text-left text-gray-100 mb-12 tracking-wide">Certificates</h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full">
-      {certificateImages.map((img, idx) => (
+      {certificateImages.map((img) => (
         <motion.div
           key={img.url}
           className="rounded-xl overflow-hidden shadow-lg bg-[#2d2d30] border border-gray-700 p-0 transition-transform duration-300"
@@ -151,7 +152,7 @@ const Projects = () => (
   <section id="projects" className="py-16 bg-[#252425] px-4 md:px-16">
     <h2 className="text-4xl font-bold text-left text-gray-100 mb-12 tracking-wide flex items-center gap-2"><FaAward className="text-yellow-400" /> Projects</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
-      {projects.map((proj, idx) => (
+      {projects.map((proj: typeof projects[number]) => (
         <motion.a
           href={proj.link}
           target="_blank"
@@ -170,17 +171,17 @@ const Projects = () => (
             <h3 className="text-2xl font-semibold text-gray-100 group-hover:text-gray-300 transition-colors">{proj.title}</h3>
           </div>
           <ul className="mb-4 text-gray-300 text-sm list-disc list-inside space-y-1">
-            {proj.description.map((point, i) => (
+            {proj.description.map((point: string, i: number) => (
               <li key={i}>{point}</li>
             ))}
           </ul>
           <div className="flex gap-4 justify-start mb-4">
-            {proj.features.map((f, i) => (
+            {proj.features.map((f: { icon: React.ReactElement; tooltip: string }, i: number) => (
               <span key={i} title={f.tooltip} className="text-2xl">{f.icon}</span>
             ))}
           </div>
           <div className="flex gap-3 justify-start items-center flex-wrap">
-            {proj.tech.map((t, i) => (
+            {proj.tech.map((t: { icon: React.ReactElement; tooltip: string }, i: number) => (
               <span key={i} title={t.tooltip} className="flex items-center gap-2 text-xl">
                 {t.icon}
                 <span className="text-gray-300 text-base">{t.tooltip}</span>
@@ -262,7 +263,7 @@ const Skills = () => (
   <section id="skills" className="py-16 bg-[#252425] px-4 md:px-16">
     <h2 className="text-4xl font-bold text-left text-gray-100 mb-12 tracking-wide">Skills</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
-      {skills.map((cat, idx) => (
+      {skills.map((cat) => (
         cat.category === "Soft Skills" ? (
           <motion.div
             key={cat.category}
